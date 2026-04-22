@@ -27,8 +27,8 @@ export default function Navigation() {
 
   return (
     <motion.nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? "py-2 sm:py-3" : "py-4 sm:py-6"
+      className={`absolute top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        isScrolled ? "py-2 sm:py-3 opacity-0 pointer-events-none" : "py-4 sm:py-6 opacity-100"
       }`}
     >
       <motion.div

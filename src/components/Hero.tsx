@@ -29,7 +29,7 @@ export default function Hero() {
         >
           <div className="px-5 py-2 rounded-full bg-white/20 backdrop-blur-md border border-white/30 text-white font-bold text-xs uppercase tracking-widest mb-6 inline-flex items-center gap-2">
             <span className="w-2 h-2 rounded-full bg-brand-pink animate-pulse" />
-            Content Creators en Mendoza
+            Las mejores de Mendoza
           </div>
           
           <h1 className="text-6xl sm:text-7xl md:text-8xl lg:text-[140px] font-black tracking-tighter mb-4 text-white leading-none">

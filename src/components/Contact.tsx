@@ -109,7 +109,7 @@ Quiero hacer un video para mi marca.
 
                 <button type="submit" className="mt-4 w-full bg-[#25D366] text-white px-8 py-5 rounded-2xl font-black text-sm uppercase tracking-widest flex items-center justify-center gap-3 hover:bg-[#20BD5A] transition-colors active:scale-95 shadow-lg shadow-[#25D366]/30 hover:scale-[1.02]">
                   <MessageCircle className="w-6 h-6" fill="currentColor" />
-                  Enviar propuesta
+                  A trabajar
                 </button>
              </form>
            ) : (
