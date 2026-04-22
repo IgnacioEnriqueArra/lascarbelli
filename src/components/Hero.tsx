@@ -1,7 +1,6 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowRight, Play } from "lucide-react";
 
 export default function Hero() {
   return (
@@ -42,13 +41,11 @@ export default function Hero() {
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto px-6">
-            <a href="#contacto" className="inline-flex items-center justify-center gap-2 px-8 py-4 sm:py-5 bg-white text-oscuro font-black tracking-widest uppercase text-sm rounded-2xl hover:scale-105 active:scale-95 transition-transform w-full sm:w-auto shadow-glow">
-              Quiero colaborar
-              <ArrowRight className="w-5 h-5" />
+            <a href="#contacto" className="inline-flex items-center justify-center px-10 py-4 sm:py-5 bg-white text-oscuro font-black tracking-widest uppercase text-sm rounded-2xl hover:scale-105 active:scale-95 transition-transform w-full sm:w-auto shadow-glow">
+              Trabajemos
             </a>
-            <a href="#portfolio" className="inline-flex items-center justify-center gap-2 px-8 py-4 sm:py-5 bg-white/10 backdrop-blur-md border border-white/20 text-white font-black tracking-widest uppercase text-sm rounded-2xl hover:bg-white/20 active:scale-95 transition-all w-full sm:w-auto">
+            <a href="#portfolio" className="inline-flex items-center justify-center px-10 py-4 sm:py-5 bg-white/10 backdrop-blur-md border border-white/20 text-white font-black tracking-widest uppercase text-sm rounded-2xl hover:bg-white/20 active:scale-95 transition-all w-full sm:w-auto">
               Ver trabajos
-              <Play className="w-4 h-4 fill-current" />
             </a>
           </div>
         </motion.div>
