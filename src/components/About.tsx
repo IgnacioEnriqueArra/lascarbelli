@@ -24,7 +24,7 @@ export default function About() {
             Somos las<span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-pink-400"> Carbelli</span>
           </h2>
           <p className="text-zinc-400 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed">
-            Zoe y Guada, dos sisters de San Martín, Mendoza. Creating content que hace que tu negocio brille en TikTok e Instagram.
+            Zoe y Guada, dos hermanas de San Martín, Mendoza. Creamos contenido que hace que tu negocio brille en TikTok e Instagram.
           </p>
         </motion.div>
 
@@ -73,7 +73,9 @@ export default function About() {
           transition={{ delay: 0.3 }}
           className="text-zinc-500 text-center text-base mt-12"
         >
-          ¿Tenés un negocio? Hablemos.
+          <span className="inline-block px-4 py-2 bg-zinc-900 border border-zinc-800 rounded-full text-zinc-400">
+            ¿Tenés un negocio? Hablemos.
+          </span>
         </motion.p>
       </div>
     </section>
