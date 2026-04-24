@@ -4,25 +4,12 @@ import { motion } from "framer-motion";
 import { MessageCircle, Video, Share2 } from "lucide-react";
 
 const steps = [
-  { 
-    num: "01", 
-    title: "Contacto", 
-    desc: "Nos escribís y definimos el contenido perfecto para tu marca.",
-    icon: MessageCircle 
-  },
-  { 
-    num: "02", 
-    title: "Grabación", 
-    desc: "Capturamos tu producto o servicio con nuestra estética única.",
-    icon: Video 
-  },
-  { 
-    num: "03", 
-    title: "Publicación", 
-    desc: "Editamos, te mostramos, publicamos y miramos cómo growsea tu negocio.",
-    icon: Share2 
-  },
+  { num: "01", title: "Contacto", desc: "Nos escribís y definimos el contenido perfecto para tu marca." },
+  { num: "02", title: "Grabación", desc: "Capturamos tu producto o servicio con nuestra estética única." },
+  { num: "03", title: "Publicación", desc: "Editamos, te mostramos, publicamos y miramos cómo growsea tu negocio." },
 ];
+
+const icons = [MessageCircle, Video, Share2];
 
 export default function Services() {
   return (
@@ -55,7 +42,7 @@ export default function Services() {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
           {steps.map((item, i) => {
-            const Icon = item.icon;
+            const Icon = icons[i];
             return (
               <motion.div
                 key={item.num}
