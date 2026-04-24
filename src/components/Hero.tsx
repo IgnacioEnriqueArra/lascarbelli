@@ -1,56 +1,187 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform, useMotionValue, useSpring } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
+import { ArrowRight, Play } from "lucide-react";
 
 export default function Hero() {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+  const [isHovering, setIsHovering] = useState(false);
+  const { scrollY } = useScroll();
+  
+  const y = useTransform(scrollY, [0, 500], [0, 150]);
+  const opacity = useTransform(scrollY, [0, 300], [1, 0]);
+
+  const cursorX = useMotionValue(-100);
+  const cursorY = useMotionValue(-100);
+  
+  const springConfig = { stiffness: 500, damping: 28 };
+  const cursorXSpring = useSpring(cursorX, springConfig);
+  const cursorYSpring = useSpring(cursorY, springConfig);
+
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      setMousePos({
+        x: (e.clientX / window.innerWidth) * 2 - 1,
+        y: (e.clientY / window.innerHeight) * 2 - 1,
+      });
+      cursorX.set(e.clientX);
+      cursorY.set(e.clientY);
+    };
+    
+    const handleMouseOver = (e: MouseEvent) => {
+      const target = e.target as HTMLElement;
+      if (target.tagName === 'A' || target.tagName === 'BUTTON' || target.closest('a') || target.closest('button')) {
+        setIsHovering(true);
+      }
+    };
+    
+    const handleMouseOut = () => setIsHovering(false);
+    
+    window.addEventListener("mousemove", handleMouseMove);
+    window.addEventListener("mouseover", handleMouseOver);
+    window.addEventListener("mouseout", handleMouseOut);
+    
+    return () => {
+      window.removeEventListener("mousemove", handleMouseMove);
+      window.removeEventListener("mouseover", handleMouseOver);
+      window.removeEventListener("mouseout", handleMouseOut);
+    };
+  }, [cursorX, cursorY]);
+
   return (
-    <section className="relative h-[100svh] min-h-screen flex flex-col justify-center overflow-hidden bg-oscuro">
-      {/* Background Video */}
-      <div className="absolute inset-0 z-0">
-        <video
-          id="hero-video"
-          src="/hero.mp4"
-          autoPlay
-          loop
-          muted // Controlled by EnterScreen
-          playsInline
-          className="w-full h-full object-cover"
-        />
-        <div className="absolute inset-0 bg-black/40" />
-        <div className="absolute inset-0 bg-gradient-to-t from-oscuro via-transparent to-transparent opacity-90" />
-      </div>
-
-      <div className="container-custom relative z-10 flex flex-col items-center text-center justify-end md:justify-center pt-24 pb-12 sm:px-12 h-full">
+    <>
+      <motion.div 
+        className="fixed pointer-events-none z-[9999] hidden md:block"
+        style={{ 
+          x: cursorXSpring, 
+          y: cursorYSpring,
+          translate: 'translate(-50%, -50%)'
+        }}
+      >
         <motion.div
-           initial={{ opacity: 0, y: 30 }}
-           animate={{ opacity: 1, y: 0 }}
-           transition={{ duration: 1, delay: 0.5 }}
-           className="w-full max-w-4xl flex flex-col items-center"
+          animate={{ 
+            scale: isHovering ? 2 : 1,
+          }}
+          transition={{ type: "spring", stiffness: 300, damping: 20 }}
+          className="w-3 h-3 rounded-full"
+          style={{ backgroundColor: '#ec4899' }}
+        />
+      </motion.div>
+
+      <section ref={containerRef} className="relative min-h-[100svh] overflow-hidden bg-black">
+        <div className="absolute inset-0 z-0">
+          <video
+            ref={videoRef}
+            src="/hero.mp4"
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-black/50" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-pink-500/20 via-transparent to-cyan-500/10" />
+        </div>
+
+        <motion.div 
+          style={{ y }}
+          className="absolute inset-0 z-10 pointer-events-none"
         >
-          <div className="px-5 py-2 rounded-full bg-white/20 backdrop-blur-md border border-white/30 text-white font-bold text-xs uppercase tracking-widest mb-6 inline-flex items-center gap-2">
-            <span className="w-2 h-2 rounded-full bg-brand-pink animate-pulse" />
-            Las mejores de Mendoza
-          </div>
-          
-          <h1 className="text-6xl sm:text-7xl md:text-8xl lg:text-[140px] font-black tracking-tighter mb-4 text-white leading-none">
-            Las <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-pink via-brand-mint to-agua">Carbelli</span>
-          </h1>
-
-          <p className="text-base sm:text-xl md:text-2xl text-white/80 max-w-2xl mx-auto mb-8 md:mb-12 font-body font-medium leading-relaxed px-4">
-            Transformamos la vibra de tu local en contenido adictivo. Llegá a miles de clientes potenciales con videos genuinos, creativos y de alto alcance.
-          </p>
-
-          <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto px-6">
-            <a href="#contacto" className="inline-flex items-center justify-center px-10 py-4 sm:py-5 bg-white text-oscuro font-black tracking-widest uppercase text-sm rounded-2xl hover:scale-105 active:scale-95 transition-transform w-full sm:w-auto shadow-glow">
-              Trabajemos
-            </a>
-            <a href="#portfolio" className="inline-flex items-center justify-center px-10 py-4 sm:py-5 bg-white/10 backdrop-blur-md border border-white/20 text-white font-black tracking-widest uppercase text-sm rounded-2xl hover:bg-white/20 active:scale-95 transition-all w-full sm:w-auto">
-              Ver trabajos
-            </a>
-          </div>
+          <motion.div
+            animate={{
+              x: mousePos.x * 30,
+              y: mousePos.y * 30,
+            }}
+            transition={{ type: "spring", stiffness: 50, damping: 20 }}
+            className="absolute top-[20%] -left-[10%] w-[400px] h-[400px] rounded-full bg-pink-500/30 blur-[100px]"
+          />
+          <motion.div
+            animate={{
+              x: -mousePos.x * 20,
+              y: -mousePos.y * 20,
+            }}
+            transition={{ type: "spring", stiffness: 30, damping: 25 }}
+            className="absolute bottom-[20%] -right-[10%] w-[450px] h-[450px] rounded-full bg-cyan-500/25 blur-[120px]"
+          />
         </motion.div>
-      </div>
-      
-    </section>
+
+        <div className="relative z-20 container-custom min-h-[100svh] flex flex-col justify-center items-center text-center py-24 px-4">
+          <motion.div
+            style={{ opacity }}
+            className="flex flex-col items-center"
+          >
+            <motion.h1
+              initial={{ opacity: 0, y: 30, scale: 0.95 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              transition={{ duration: 0.7, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+              className="text-[clamp(2.8rem,13vw,9rem)] font-black tracking-tight leading-[0.9] mb-3"
+            >
+              <span className="block text-white">
+                Las
+              </span>
+              <span className="block bg-gradient-to-r from-pink-500 via-rose-500 to-cyan-400 bg-clip-text text-transparent">
+                Carbelli
+              </span>
+            </motion.h1>
+
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+              className="text-xl md:text-3xl text-white/70 max-w-lg mx-auto mb-8 font-medium"
+            >
+              Videos para tu negocio con la magia de las Carbelli
+            </motion.p>
+
+            <motion.div
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.6 }}
+              className="flex flex-col sm:flex-row gap-3 w-full sm:w-auto"
+            >
+              <a
+                href="#contacto"
+                className="group relative inline-flex items-center justify-center px-8 py-4 text-sm font-bold uppercase tracking-widest text-black rounded-full overflow-hidden w-full sm:w-auto"
+              >
+                <span className="absolute inset-0 bg-gradient-to-r from-pink-500 via-rose-500 to-cyan-400" />
+                <span className="absolute inset-0 bg-gradient-to-r from-cyan-400 via-rose-500 to-pink-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                <span className="relative flex items-center justify-center gap-2">
+                  <span>Trabajemos</span>
+                  <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+                </span>
+              </a>
+              
+              <a
+                href="#portfolio"
+                className="inline-flex items-center justify-center px-8 py-4 text-sm font-bold uppercase tracking-widest text-white rounded-full border border-white/30 hover:bg-white/10 transition-all gap-2 w-full sm:w-auto"
+              >
+                <Play className="w-4 h-4" fill="currentColor" />
+                <span>Ver trabajos</span>
+              </a>
+            </motion.div>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 1.5, duration: 1 }}
+            className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3"
+          >
+            <span className="text-[10px] uppercase tracking-[0.4em] text-white/40">Desplaza</span>
+            <motion.div
+              animate={{ y: [0, 6, 0] }}
+              transition={{ duration: 1.5, repeat: Infinity }}
+              className="w-px h-10 bg-gradient-to-b from-white/60 to-transparent"
+            />
+          </motion.div>
+        </div>
+
+        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-black to-transparent pointer-events-none z-20" />
+      </section>
+    </>
   );
 }

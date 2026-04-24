@@ -2,72 +2,86 @@
 
 import { motion } from "framer-motion";
 
-const sisters = [
-  {
-    name: "Zoe",
-    age: 12,
-    role: "Editora & Directora",
-    description: "Creatividad al 100%. Edita con ritmo impecable y logra captar la esencia de tu lugar para que destaque en TikTok. 🎬✨",
-    gradient: "from-agua to-brand-mint",
-    emoji: "💖",
-  },
-  {
-    name: "Guada",
-    age: 8,
-    role: "Voz & Carisma",
-    description: "La energía del team. Su carisma natural engancha a los usuarios al instante. Dale el libreto y ella pondrá la magia real. ✨🎙️",
-    gradient: "from-brand-pink to-lila",
-    emoji: "🔥",
-  },
-];
-
 export default function About() {
   return (
-    <section id="nosotras" className="py-12 md:py-24 bg-claro relative overflow-hidden flex flex-col items-center text-center">
-      <div className="absolute top-0 right-0 w-[400px] md:w-[600px] h-[400px] md:h-[600px] bg-brand-pink/5 rounded-full blur-[80px] pointer-events-none" />
+    <section id="nosotras" className="py-24 md:py-32 bg-black relative overflow-hidden">
+      <div className="absolute inset-0 opacity-15">
+        <div className="absolute top-1/4 left-0 w-[400px] h-[400px] bg-pink-500 rounded-full blur-[120px]" />
+        <div className="absolute bottom-1/4 right-0 w-[400px] h-[400px] bg-cyan-400 rounded-full blur-[120px]" />
+      </div>
 
-      <div className="container-custom relative z-10 px-4 w-full flex flex-col items-center">
-        <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-50px" }} className="w-full mb-8 md:mb-16">
-          <div className="inline-flex items-center justify-center gap-1.5 mb-3 bg-white border border-oscuro/5 px-4 py-1.5 rounded-full shadow-soft font-black text-xs uppercase tracking-widest text-oscuro/60 mx-auto">
-            <span>👋 Conócenos</span>
-          </div>
-          <h2 className="text-4xl md:text-6xl font-black text-oscuro mb-3 md:mb-4 tracking-tighter mx-auto">
-            Detrás de las <span className="text-gradient">cámaras</span>
+      <div className="container-custom px-4 md:px-8 relative z-10">
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }} 
+          whileInView={{ opacity: 1, y: 0 }} 
+          viewport={{ once: true }}
+          className="text-center mb-8"
+        >
+          <a 
+            href="https://www.instagram.com/las_carbelli/" 
+            target="_blank" 
+            rel="noreferrer"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 border border-white/10 font-bold text-xs uppercase tracking-widest mb-4 hover:border-pink-500 transition-all cursor-pointer"
+          >
+            Conócenos
+          </a>
+          <h2 className="text-4xl md:text-6xl font-black text-white tracking-tight mt-6 mb-4">
+            Las Carbelli
           </h2>
-          <p className="text-sm md:text-xl text-oscuro/60 max-w-lg mx-auto font-body px-2">
-            Dos hermanas unidas por la creatividad. Armamos videos para que tu restaurante o local explote de clientes. 🚀
+          <p className="text-white/50 text-center text-base md:text-lg max-w-xl mx-auto mb-6 leading-relaxed px-4">
+            Somos Zoe y Guada, dos sisters de San Martín, Mendoza. 
+            Hacemos videos para TikTok e Instagram. Zoe pone la voz y Guada edita. 
+            Juntas creamos contenido auténtico para tu negocio.
           </p>
         </motion.div>
 
-        <div className="grid lg:grid-cols-2 gap-4 md:gap-10 max-w-5xl mx-auto w-full">
-          {sisters.map((sister, index) => (
-            <motion.div
-              key={sister.name}
-              initial={{ opacity: 0, scale: 0.95 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.4, delay: index * 0.1 }}
-              className="bg-white rounded-3xl md:rounded-[2.5rem] p-6 lg:p-10 border-2 border-transparent hover:border-brand-pink/10 shadow-sm hover:shadow-card-hover transition-all duration-300 flex flex-col items-center justify-center gap-5 md:gap-6 group mx-auto w-full max-w-lg"
-            >
-              <div className={`w-24 h-24 md:w-32 md:h-32 shrink-0 rounded-2xl md:rounded-3xl bg-gradient-to-br ${sister.gradient} flex items-center justify-center shadow-lg relative -rotate-3 group-hover:rotate-0 transition-transform mx-auto`}>
-                <span className="text-5xl md:text-6xl drop-shadow-md">{sister.emoji}</span>
-                <div className="absolute -bottom-2 -right-2 w-10 h-10 md:w-12 md:h-12 rounded-xl bg-white text-oscuro font-black text-sm md:text-base flex items-center justify-center shadow-md">
-                   {sister.age}
-                </div>
-              </div>
-              
-              <div className="flex flex-col items-center justify-center text-center mt-2 w-full">
-                <h3 className="text-3xl md:text-4xl font-black tracking-tight mb-2">{sister.name}</h3>
-                <span className={`text-xs md:text-sm font-black uppercase tracking-widest bg-gradient-to-r ${sister.gradient} bg-clip-text text-transparent mb-3 block`}>
-                   {sister.role}
-                </span>
-                <p className="text-[14px] md:text-base font-body text-oscuro/60 leading-relaxed max-w-sm mx-auto w-full">
-                   {sister.description}
-                </p>
-              </div>
-            </motion.div>
-          ))}
+        <div className="flex justify-center gap-6 md:gap-8 max-w-xl mx-auto">
+          {/* Zoe */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.1 }}
+            className="flex flex-col items-center"
+          >
+            <div className="w-36 h-36 md:w-48 md:h-48 rounded-full overflow-hidden border-4 border-pink-500 hover:border-cyan-400 transition-all duration-300">
+              <img 
+                src="/zoe.jpeg" 
+                alt="Zoe"
+                className="w-full h-full object-cover"
+              />
+            </div>
+            <p className="text-white font-medium text-sm mt-2">Zoe</p>
+          </motion.div>
+
+          {/* Guada */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.2 }}
+            className="flex flex-col items-center"
+          >
+            <div className="w-36 h-36 md:w-48 md:h-48 rounded-full overflow-hidden border-4 border-pink-500 hover:border-cyan-400 transition-all duration-300">
+              <img 
+                src="/guada.jpeg" 
+                alt="Guada"
+                className="w-full h-full object-cover"
+              />
+            </div>
+            <p className="text-white font-medium text-sm mt-2">Guada</p>
+          </motion.div>
         </div>
+
+        <motion.p 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.3 }}
+          className="text-white/40 text-center text-sm mt-6"
+        >
+          Si tenés un negocio y querés llegar a más gente, mandanos un mensaje.
+        </motion.p>
       </div>
     </section>
   );

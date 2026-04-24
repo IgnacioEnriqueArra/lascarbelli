@@ -4,28 +4,8 @@ import Navigation from "@/components/Navigation";
 import EnterScreen from "@/components/EnterScreen";
 
 export const metadata: Metadata = {
-  title: "Las Carbelli | Content Creators Mendoza",
-  description:
-    "Dos hermanas de San Martín, Mendoza, creando contenido mágico, divertido y moderno. Bailamos, cantamos y compartimos momentos especiales.",
-  keywords: [
-    "Carbelli",
-    "Zoe",
-    "Guada",
-    "content creators",
-    "Mendoza",
-    "San Martín",
-    "influencers",
-    "videos",
-    "colaboraciones",
-  ],
-  authors: [{ name: "Carbelli" }],
-  openGraph: {
-    title: "Las Carbelli | Content Creators Mendoza",
-    description:
-      "Dos hermanas creando contenido divertido y altamente viral para emprendimientos y locales mendozinos.",
-    type: "website",
-    locale: "es_AR",
-  },
+  title: "Las Carbelli | Rompiendo Redes en Mendoza",
+  description: "Dos hermanas geniales de San Martín que te llenan el local de gente.",
 };
 
 export default function RootLayout({
@@ -34,13 +14,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="es" className="scroll-smooth">
-      <body className="antialiased bg-claro text-oscuro font-body selection:bg-brand-pink selection:text-white">
+    <html lang="es" className="dark scroll-smooth">
+      <body className="antialiased bg-black text-white font-body">
         <EnterScreen />
         <Navigation />
-        <main>
-          {children}
-        </main>
+        <main>{children}</main>
       </body>
     </html>
   );

@@ -1,59 +1,56 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { Play, ExternalLink } from "lucide-react";
 
 const brands = [
-  { name: "Grido Heladería", gradient: "from-brand-pink to-brand-mint" },
-  { name: "La Casita del Peinador", gradient: "from-brand-mint to-agua" },
-  { name: "La Chica de los Ramos", gradient: "from-agua to-lila" },
-  { name: "Momy Comidas", gradient: "from-lila to-brand-pink" },
-  { name: "Chamu Rockería", gradient: "from-brand-mint to-brand-pink" },
-  { name: "Alma Gaucha", gradient: "from-brand-pink to-agua" },
-  { name: "...y muchos más", gradient: "from-white/40 to-white/20" }
+  { name: "Grido Heladería", gradient: "from-pink-500 to-rose-500" },
+  { name: "La Casita del Peinador", gradient: "from-cyan-400 to-blue-500" },
+  { name: "Momy Comidas", gradient: "from-amber-500 to-orange-500" },
+  { name: "Chamu Rockería", gradient: "from-purple-500 to-pink-500" },
+  { name: "Alma Gaucha", gradient: "from-green-400 to-emerald-500" },
+  { name: "La Chica de los Ramos", gradient: "from-rose-500 to-red-500" },
+  { name: "Expreso 2000", gradient: "from-blue-500 to-indigo-500" },
+  { name: "Believe", gradient: "from-violet-500 to-purple-500" },
 ];
 
 export default function Portfolio() {
   return (
-    <section id="portfolio" className="py-16 md:py-32 bg-oscuro relative flex flex-col items-center text-center overflow-hidden">
-      {/* Luces sutiles de fondo para estética pro */}
-      <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-brand-pink/10 rounded-full blur-[150px] pointer-events-none" />
-      <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-brand-mint/5 rounded-full blur-[150px] pointer-events-none" />
-
-      <div className="container-custom px-4 z-10 relative w-full flex flex-col items-center gap-12 md:gap-24">
-        
-        <motion.div 
+    <section id="portfolio" className="py-20 md:py-28 bg-black relative overflow-hidden">
+      <div className="absolute inset-0 opacity-15">
+        <div className="absolute top-0 left-0 w-[300px] h-[300px] bg-pink-500 rounded-full blur-[100px]" />
+        <div className="absolute bottom-0 right-0 w-[300px] h-[300px] bg-cyan-400 rounded-full blur-[100px]" />
+      </div>
+      
+      <div className="container-custom px-4 z-10 w-full">
+        <motion.h2 
           initial={{ opacity: 0, y: 20 }} 
           whileInView={{ opacity: 1, y: 0 }} 
-          viewport={{ once: true }} 
-          className="w-full max-w-3xl"
+          viewport={{ once: true }}
+          className="text-3xl md:text-5xl font-black text-center mb-10"
         >
-          <div className="inline-flex py-1.5 px-6 rounded-full bg-white/5 border border-white/10 font-black uppercase text-[10px] md:text-xs tracking-[0.2em] mb-6 mx-auto justify-center text-white/50">
-             Confían en nosotras
-          </div>
-          <h2 className="text-4xl md:text-7xl font-black text-white tracking-tighter mb-6 leading-tight">
-            Marcas que ya <br className="hidden md:block"/> dieron el <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-pink to-brand-mint">salto</span>
-          </h2>
-          <p className="max-w-xl mx-auto text-white/60 text-base md:text-xl font-body leading-relaxed">
-             Hablamos con contenido genuino que llega a la gente. Cientos de miles de vistas generadas para locales como el tuyo.
-          </p>
-        </motion.div>
+          <span className="bg-gradient-to-r from-pink-500 to-cyan-400 bg-clip-text text-transparent">
+            Negocios que nos eligieron
+          </span>
+        </motion.h2>
 
-        <div className="flex flex-wrap justify-center items-center gap-x-6 gap-y-4 md:gap-x-12 md:gap-y-6 max-w-5xl mx-auto w-full">
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-2 md:gap-3">
           {brands.map((brand, i) => (
             <motion.div
               key={brand.name}
-              initial={{ opacity: 0, filter: "blur(10px)" }}
-              whileInView={{ opacity: 1, filter: "blur(0px)" }}
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: i * 0.1, duration: 0.8 }}
-              className="group cursor-default"
+              transition={{ delay: i * 0.05 }}
             >
-              <span className={`text-2xl md:text-5xl font-black tracking-tighter transition-all duration-500 inline-block bg-clip-text
-                ${brand.name.includes("...") ? "text-white/20 italic" : "text-transparent bg-gradient-to-r hover:scale-110 drop-shadow-sm"} 
-                ${brand.gradient}
-              `}>
-                {brand.name}
-              </span>
+              <a
+                href="https://www.instagram.com/las_carbelli/"
+                target="_blank"
+                rel="noreferrer"
+                className="group relative flex items-center justify-center px-3 py-2 md:px-4 md:py-2.5 rounded-tl-full rounded-bl-full rounded-br-full rounded-tr-none bg-white/5 border border-white/10 hover:bg-white/10 hover:border-white/20 transition-all duration-200"
+              >
+                <span className="font-semibold text-xs md:text-sm text-white/80 group-hover:text-white truncate">{brand.name}</span>
+              </a>
             </motion.div>
           ))}
         </div>
@@ -61,12 +58,21 @@ export default function Portfolio() {
         <motion.div 
           initial={{ opacity: 0 }} 
           whileInView={{ opacity: 1 }} 
-          viewport={{ once: true }} 
-          className="mt-4 md:mt-8 w-full flex justify-center"
+          viewport={{ once: true }}
+          className="flex justify-center mt-8"
         >
-           <a href="https://www.tiktok.com/@las.carbelli" target="_blank" rel="noreferrer" className="inline-flex items-center justify-center px-10 py-4 bg-white/10 backdrop-blur-md border border-white/20 text-white font-black tracking-widest uppercase text-xs md:text-sm rounded-full hover:bg-white hover:text-oscuro active:scale-95 transition-all">
-              Ver trabajos en TikTok
-           </a>
+          <motion.a
+            href="https://www.instagram.com/las_carbelli/"
+            target="_blank"
+            rel="noreferrer"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className="inline-flex items-center gap-2 px-6 py-3 bg-white/5 border border-white/10 text-white font-bold rounded-full text-sm hover:bg-white hover:text-black transition-all"
+          >
+            <Play className="w-4 h-4" fill="currentColor" />
+            <span>Ver todos</span>
+            <ExternalLink className="w-3 h-3" />
+          </motion.a>
         </motion.div>
       </div>
     </section>
