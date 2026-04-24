@@ -10,8 +10,7 @@ export default function EnterScreen() {
   useEffect(() => {
     const timer = setTimeout(() => {
       setLoading(false);
-      setEntered(true);
-    }, 2000);
+    }, 1500);
     return () => clearTimeout(timer);
   }, []);
 
@@ -20,13 +19,12 @@ export default function EnterScreen() {
   }, [entered]);
 
   const handleEnter = () => {
-    if (loading) return;
     setEntered(true);
     const videos = document.querySelectorAll('video');
     videos.forEach(video => {
       video.muted = false;
       video.volume = 0.3;
-      video.play().catch((e) => console.log(e));
+      video.play().catch(() => {});
     });
   };
 
@@ -36,69 +34,43 @@ export default function EnterScreen() {
         <motion.div
           initial={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          transition={{ duration: 1, ease: "easeInOut" }}
-          className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-black overflow-hidden"
+          transition={{ duration: 0.8, ease: "easeInOut" }}
+          className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-zinc-950 overflow-hidden"
         >
-          <div className="absolute inset-0 z-0">
+          <div className="absolute inset-0">
             <video
               src="/hero.mp4"
               autoPlay
               loop
               muted
               playsInline
-              className="w-full h-full object-cover opacity-50"
+              className="w-full h-full object-cover opacity-30"
             />
-            <div className="absolute inset-0 bg-black/60" />
+            <div className="absolute inset-0 bg-zinc-950/70" />
           </div>
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-white/5 rounded-full blur-[150px] pointer-events-none" />
           
-          <div className="relative z-10 flex flex-col items-center w-full max-w-sm px-6 text-center">
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.6 }}
+            className="relative z-10 text-center"
+          >
+            <h1 className="text-5xl md:text-7xl font-black text-white tracking-tight mb-2">
+              Las <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400">Carbelli</span>
+            </h1>
+            <p className="text-zinc-400 text-sm md:text-base mb-8">Contenido que hace growwear tu negocio</p>
             
-            <div className="overflow-hidden mb-12">
-              <motion.h1 
-                 initial={{ y: "100%" }}
-                 animate={{ y: 0 }}
-                 transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-                 className="text-5xl md:text-6xl font-black text-white tracking-tighter uppercase"
+            {!loading && (
+              <motion.button
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                onClick={handleEnter}
+                className="px-10 py-4 bg-gradient-to-r from-cyan-500 to-purple-500 text-white font-semibold rounded-full hover:shadow-lg hover:shadow-cyan-500/30 hover:scale-105 active:scale-95 transition-all"
               >
-                Las <span className="bg-gradient-to-r from-purple-500 to-teal-400 bg-clip-text text-transparent">Carbelli</span>
-              </motion.h1>
-              <motion.div 
-                 initial={{ width: 0 }}
-                 animate={{ width: "100%" }}
-                 transition={{ duration: 1.5, ease: "easeInOut" }}
-                 className="h-0.5 bg-white/20 mt-4 mx-auto block"
-              >
-                <div className="h-full bg-gradient-to-r from-purple-500 to-teal-400 w-1/3 animate-pulse" />
-              </motion.div>
-            </div>
-            
-            <AnimatePresence>
-              {loading ? (
-                <motion.div
-                  key="loading"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0, scale: 0.9 }}
-                  className="text-white/40 text-xs font-bold uppercase tracking-[0.3em]"
-                >
-                  Cargando experiencia...
-                </motion.div>
-              ) : (
-                <motion.button
-                  key="enter-btn"
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6 }}
-                  onClick={handleEnter}
-                  className="px-12 py-4 bg-gradient-to-r from-purple-500 to-teal-400 text-white font-black uppercase tracking-[0.2em] text-sm rounded-full hover:scale-105 active:scale-95 transition-all shadow-lg shadow-pink-500/30"
-                >
-                  Entrar al mundo Carbelli
-                </motion.button>
-              )}
-            </AnimatePresence>
-
-</div>
+                Entrar
+              </motion.button>
+            )}
+          </motion.div>
         </motion.div>
       )}
     </AnimatePresence>

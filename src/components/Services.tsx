@@ -1,83 +1,97 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { MessageCircle, Video, Share2 } from "lucide-react";
 
 const steps = [
-  { num: "01", title: "Contacto", desc: "Nos escribís, coordinamos el contenido según el producto o servicio que ofrecés." },
-  { num: "02", title: "Grabación", desc: "Grabamos tu producto o servicio y mostramos nuestra experiencia con tu marca." },
-  { num: "03", title: "Publicación", desc: "Editamos, nos das el okay y subimos a nuestras redes." },
+  { 
+    num: "01", 
+    title: "Contacto", 
+    desc: "Nos escribís y definimos el contenido perfecto para tu marca.",
+    icon: MessageCircle 
+  },
+  { 
+    num: "02", 
+    title: "Grabación", 
+    desc: "Capturamos tu producto o servicio con nuestra estética única.",
+    icon: Video 
+  },
+  { 
+    num: "03", 
+    title: "Publicación", 
+    desc: "Editamos, te mostramos, publicamos y miramos cómo growsea tu negocio.",
+    icon: Share2 
+  },
 ];
 
 export default function Services() {
   return (
-    <section id="servicios" className="py-24 md:py-32 bg-zinc-950 relative overflow-hidden">
+    <section id="servicios" className="py-28 md:py-40 bg-zinc-950 relative">
       <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute top-[5%] left-[-5%] w-[400px] h-[400px] bg-cyan-500/20 rounded-full blur-[100px]" />
-        <div className="absolute bottom-[5%] right-[-5%] w-[400px] h-[400px] bg-pink-500/20 rounded-full blur-[100px]" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-gradient-to-br from-cyan-500/10 via-purple-500/10 to-pink-500/10 rounded-full blur-[150px]" />
-        
-        <div className="absolute inset-0" style={{ backgroundImage: 'radial-gradient(rgba(255,255,255,0.02) 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
-        
-        <div className="absolute top-20 right-20 w-2 h-2 bg-cyan-400 rounded-full animate-pulse" />
-        <div className="absolute bottom-32 left-1/4 w-1.5 h-1.5 bg-pink-400 rounded-full animate-pulse" style={{ animationDelay: '0.7s' }} />
-        <div className="absolute top-1/2 right-1/3 w-1 h-1 bg-purple-400 rounded-full animate-pulse" style={{ animationDelay: '1.2s' }} />
+        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-purple-500/10 rounded-full blur-[120px]" />
+        <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-cyan-500/10 rounded-full blur-[120px]" />
       </div>
 
       <div className="container-custom px-4 w-full">
         <motion.h2 
-          initial={{ opacity: 0, y: 20 }} 
+          initial={{ opacity: 0, y: 30 }} 
           whileInView={{ opacity: 1, y: 0 }} 
-          viewport={{ once: true }}
-          className="text-4xl md:text-6xl font-black text-center mb-12"
+          viewport={{ once: true, margin: "-100px" }}
+          className="text-4xl md:text-6xl font-bold text-center mb-6"
         >
-          <span className="bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
-            Así trabajamos
-          </span>
+          <span className="text-white">Así </span>
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-pink-400">trabajamos</span>
         </motion.h2>
+        
+        <motion.p 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-zinc-400 text-center text-lg max-w-xl mx-auto mb-16"
+        >
+          Proceso simple, resultados que{" "}
+          <span className="text-pink-400">hablan solos</span>
+        </motion.p>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 max-w-5xl mx-auto">
-          {steps.map((item, i) => (
-            <motion.div
-              key={item.num}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.15 }}
-              whileHover={{ y: -8 }}
-              className="group relative p-8 md:p-10 rounded-3xl bg-white/5 border border-white/10 hover:border-cyan-500/50 hover:bg-white/10 transition-all duration-500 overflow-hidden"
-            >
-              <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/10 via-transparent to-pink-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-              <div className="absolute -bottom-10 -right-10 w-32 h-32 bg-cyan-500/20 rounded-full blur-3xl group-hover:bg-cyan-500/30 transition-all" />
-              <div className="absolute -top-10 -left-10 w-32 h-32 bg-pink-500/20 rounded-full blur-3xl group-hover:bg-pink-500/30 transition-all" />
-              <div className="relative z-10">
-                <div className="flex items-center justify-between mb-6">
-                  <span className="text-6xl md:text-7xl font-black text-white/10">{item.num}</span>
-                  <span className="text-4xl">{
-                    i === 0 ? '💬' : i === 1 ? '📹' : '📱'
-                  }</span>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+          {steps.map((item, i) => {
+            const Icon = item.icon;
+            return (
+              <motion.div
+                key={item.num}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.15 }}
+                className="relative group"
+              >
+                <div className="absolute inset-0 bg-gradient-to-b from-cyan-500/10 to-pink-500/10 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                <div className="relative p-8 md:p-10 rounded-3xl bg-zinc-900/50 border border-zinc-800 hover:border-zinc-700 transition-colors duration-300 h-full">
+                  <div className="flex items-start justify-between mb-6">
+                    <span className="text-5xl font-bold text-zinc-800">{item.num}</span>
+                    <div className="w-12 h-12 rounded-xl bg-zinc-800 flex items-center justify-center group-hover:bg-cyan-500/20 group-hover:text-cyan-400 transition-colors">
+                      <Icon className="w-5 h-5" />
+                    </div>
+                  </div>
+                  <h3 className="font-semibold text-white text-xl mb-3">{item.title}</h3>
+                  <p className="text-zinc-400 leading-relaxed">{item.desc}</p>
                 </div>
-                <h3 className="font-bold text-white mb-3 text-xl">{item.title}</h3>
-                <p className="text-zinc-400 text-base leading-relaxed">{item.desc}</p>
-              </div>
-            </motion.div>
-          ))}
+              </motion.div>
+            );
+          })}
         </div>
 
         <motion.div 
           initial={{ opacity: 0 }} 
           whileInView={{ opacity: 1 }} 
           viewport={{ once: true }}
-          className="text-center mt-12"
+          className="text-center mt-16"
         >
           <a
             href="#contacto"
-            onClick={(e) => {
-              e.preventDefault();
-              document.getElementById('contacto')?.scrollIntoView({ behavior: 'smooth' });
-            }}
-            className="inline-flex items-center gap-2 px-10 py-5 bg-gradient-to-r from-cyan-500 via-purple-500 to-pink-500 text-white font-bold rounded-full text-sm uppercase tracking-wider cursor-pointer hover:shadow-[0_0_40px_rgba(34,211,238,0.5)] hover:scale-105 active:scale-95 transition-all"
+            className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-cyan-500 to-purple-500 text-white font-semibold rounded-full hover:shadow-lg hover:shadow-cyan-500/25 hover:scale-105 active:scale-95 transition-all"
           >
-            Escribinos
+            Escribinos ahora
           </a>
         </motion.div>
       </div>
