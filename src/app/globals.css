@@ -15,17 +15,9 @@
     scroll-behavior: smooth;
   }
 
-  :root {
-    --bg-primary: #030712;
-    --bg-secondary: #0f172a;
-    --accent-neon: #22d3ee;
-    --accent-purple: #a855f7;
-    --accent-pink: #ec4899;
-  }
-
   body {
     font-family: 'Space Grotesk', system-ui, sans-serif;
-    background-color: var(--bg-primary);
+    background-color: #030712;
     color: #f8fafc;
     line-height: 1.7;
     overflow-x: hidden;
@@ -42,21 +34,5 @@
 @layer utilities {
   .container-custom {
     @apply max-w-6xl mx-auto px-4 md:px-8 w-full;
-  }
-  
-  .neon-glow {
-    box-shadow: 0 0 40px rgba(34, 211, 238, 0.3);
-  }
-  
-  .gradient-animate {
-    background: linear-gradient(-45deg, #22d3ee, #a855f7, #ec4899, #22d3ee);
-    background-size: 400% 400%;
-    animation: gradient 8s ease infinite;
-  }
-  
-  @keyframes gradient {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
   }
 }
