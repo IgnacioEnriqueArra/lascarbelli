@@ -61,7 +61,7 @@ export default function EnterScreen() {
                  transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
                  className="text-5xl md:text-6xl font-black text-white tracking-tighter uppercase"
               >
-                Las <span className="bg-gradient-to-r from-pink-500 to-cyan-400 bg-clip-text text-transparent">Carbelli</span>
+                Las <span className="bg-gradient-to-r from-purple-500 to-teal-400 bg-clip-text text-transparent">Carbelli</span>
               </motion.h1>
               <motion.div 
                  initial={{ width: 0 }}
@@ -69,7 +69,7 @@ export default function EnterScreen() {
                  transition={{ duration: 1.5, ease: "easeInOut" }}
                  className="h-0.5 bg-white/20 mt-4 mx-auto block"
               >
-                <div className="h-full bg-gradient-to-r from-pink-500 to-cyan-400 w-1/3 animate-pulse" />
+                <div className="h-full bg-gradient-to-r from-purple-500 to-teal-400 w-1/3 animate-pulse" />
               </motion.div>
             </div>
             
@@ -91,20 +91,14 @@ export default function EnterScreen() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6 }}
                   onClick={handleEnter}
-                  className="px-12 py-4 bg-gradient-to-r from-pink-500 to-cyan-400 text-white font-black uppercase tracking-[0.2em] text-sm rounded-full hover:scale-105 active:scale-95 transition-all shadow-lg shadow-pink-500/30"
+                  className="px-12 py-4 bg-gradient-to-r from-purple-500 to-teal-400 text-white font-black uppercase tracking-[0.2em] text-sm rounded-full hover:scale-105 active:scale-95 transition-all shadow-lg shadow-pink-500/30"
                 >
                   Entrar al mundo Carbelli
                 </motion.button>
               )}
             </AnimatePresence>
 
-          </div>
- 
-          <div className="absolute bottom-10 left-0 right-0 flex justify-center pointer-events-none">
-             <span className="text-[9px] font-black uppercase tracking-[0.4em] text-white/20">
-               Creadoras de contenido · San Martín, Mendoza
-             </span>
-          </div>
+</div>
         </motion.div>
       )}
     </AnimatePresence>

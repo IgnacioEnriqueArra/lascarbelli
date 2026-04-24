@@ -14,8 +14,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="es" className="dark scroll-smooth">
-      <body className="antialiased bg-black text-white font-body">
+    <html lang="es" className="scroll-smooth">
+      <body className="antialiased bg-zinc-950 text-white font-body">
         <EnterScreen />
         <Navigation />
         <main>{children}</main>

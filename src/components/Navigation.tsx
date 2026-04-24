@@ -15,7 +15,7 @@ export default function Navigation() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { scrollY } = useScroll();
 
-  const bgOpacity = useTransform(scrollY, [0, 50], [0, 0.9]);
+  const bgOpacity = useTransform(scrollY, [0, 50], [0, 0.95]);
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 20);
@@ -26,27 +26,27 @@ export default function Navigation() {
   return (
     <motion.nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? "py-2 opacity-100" : "py-4"
+        isScrolled ? "py-3" : "py-5"
       }`}
     >
       <motion.div
         style={{ opacity: bgOpacity }}
-        className="absolute inset-0 bg-black/90 border-b border-white/10 backdrop-blur-md"
+        className="absolute inset-0 bg-zinc-950/95 backdrop-blur-xl border-b border-white/10"
       />
 
       <div className="relative container-custom flex items-center justify-between">
         <a href="#" className="flex items-center gap-2">
           <span className="text-xl md:text-2xl font-black text-white tracking-tight">
-            Las <span className="bg-gradient-to-r from-pink-500 to-cyan-400 bg-clip-text text-transparent">Carbelli</span>
+            Las <span className="bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">Carbelli</span>
           </span>
         </a>
 
-        <div className="hidden lg:flex items-center gap-1 bg-white/5 backdrop-blur-md rounded-full p-1">
+        <div className="hidden lg:flex items-center gap-1 bg-white/5 rounded-full p-1.5">
           {navLinks.map((link) => (
             <a
               key={link.href}
               href={link.href}
-              className="px-4 py-2 text-xs font-bold text-white/70 hover:text-white hover:bg-white/10 rounded-full transition-all uppercase tracking-widest"
+              className="px-4 py-2 text-xs font-semibold text-zinc-400 hover:text-white hover:bg-white/10 rounded-full transition-all uppercase tracking-wider"
             >
               {link.label}
             </a>
@@ -56,7 +56,7 @@ export default function Navigation() {
         <div className="hidden md:block">
             <a
               href="#contacto"
-              className="px-5 py-2.5 rounded-full bg-gradient-to-r from-pink-500 to-cyan-400 text-white text-xs font-black hover:shadow-lg hover:shadow-pink-500/30 hover:scale-105 active:scale-95 transition-all uppercase tracking-widest"
+              className="px-6 py-3 rounded-full bg-gradient-to-r from-cyan-500 via-purple-500 to-pink-500 text-white text-xs font-bold hover:shadow-[0_0_30px_rgba(34,211,238,0.5)] hover:scale-105 active:scale-95 transition-all uppercase tracking-wider"
             >
               ¡A Volar!
             </a>
@@ -64,7 +64,7 @@ export default function Navigation() {
 
         <button
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          className="lg:hidden p-2 rounded-full bg-white/10 text-white hover:bg-white/20 transition-all"
+          className="lg:hidden p-2.5 rounded-full bg-white/10 text-white hover:bg-white/20 transition-all"
         >
           {isMobileMenuOpen ? (
             <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -81,7 +81,7 @@ export default function Navigation() {
       <motion.div
         initial={false}
         animate={{ height: isMobileMenuOpen ? "auto" : 0, opacity: isMobileMenuOpen ? 1 : 0 }}
-        className="lg:hidden overflow-hidden mx-2 mt-2 bg-black/95 backdrop-blur-2xl rounded-2xl border border-white/10"
+        className="lg:hidden overflow-hidden mx-2 mt-2 bg-zinc-950/95 backdrop-blur-2xl rounded-2xl border border-white/10 shadow-xl"
       >
         <div className="px-6 py-6 flex flex-col gap-3 text-center">
           {navLinks.map((link) => (
@@ -89,7 +89,7 @@ export default function Navigation() {
               key={link.href}
               href={link.href}
               onClick={() => setIsMobileMenuOpen(false)}
-              className="block py-3 text-sm font-bold text-white hover:text-pink-500 bg-white/5 rounded-xl transition-colors uppercase tracking-widest"
+              className="block py-3 text-sm font-semibold text-zinc-400 hover:text-white bg-white/5 rounded-xl transition-colors uppercase tracking-wider"
             >
               {link.label}
             </a>
@@ -97,7 +97,7 @@ export default function Navigation() {
           <a
             href="#contacto"
             onClick={() => setIsMobileMenuOpen(false)}
-            className="block w-full text-center px-6 py-4 mt-2 rounded-xl bg-gradient-to-r from-pink-500 to-cyan-400 text-white text-sm font-black uppercase tracking-widest"
+            className="block w-full text-center px-6 py-4 mt-2 rounded-xl bg-gradient-to-r from-cyan-500 via-purple-500 to-pink-500 text-white text-sm font-bold uppercase tracking-wider"
           >
             ¡Dale, empecemos!
           </a>
