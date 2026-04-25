@@ -15,7 +15,7 @@ export default function Navigation() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { scrollY } = useScroll();
 
-  const bgOpacity = useTransform(scrollY, [0, 50], [0, 1]);
+  const bgOpacity = useTransform(scrollY, [0, 50], [0, 0.95]);
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 50);
@@ -29,12 +29,12 @@ export default function Navigation() {
     >
       <motion.div
         style={{ opacity: bgOpacity }}
-        className="absolute inset-0 bg-zinc-950/90 backdrop-blur-xl"
+        className="absolute inset-0 bg-zinc-950/95 backdrop-blur-xl border-b border-zinc-900"
       />
 
       <div className="relative container-custom flex items-center justify-between h-16 md:h-20">
-        <a href="#" className="text-xl md:text-2xl font-bold text-white">
-          Las <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-pink-400">Carbelli</span>
+        <a href="#" className="text-xl md:text-2xl font-bold text-white tracking-tight">
+          Las <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400">Carbelli</span>
         </a>
 
         <div className="hidden lg:flex items-center gap-8">
@@ -42,9 +42,10 @@ export default function Navigation() {
             <a
               key={link.href}
               href={link.href}
-              className="text-sm font-medium text-zinc-400 hover:text-white transition-colors"
+              className="text-sm font-medium text-zinc-400 hover:text-white transition-all duration-300 relative group"
             >
               {link.label}
+              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-cyan-400 to-pink-400 group-hover:w-full transition-all duration-300" />
             </a>
           ))}
         </div>
@@ -52,7 +53,7 @@ export default function Navigation() {
         <div className="hidden md:block">
             <a
               href="#contacto"
-              className="px-6 py-2.5 bg-gradient-to-r from-cyan-500 to-purple-500 text-white text-sm font-medium rounded-full hover:shadow-lg hover:shadow-cyan-500/25 hover:scale-105 active:scale-95 transition-all"
+              className="px-6 py-2.5 bg-gradient-to-r from-cyan-500 to-purple-500 text-white text-sm font-semibold rounded-full hover:shadow-lg hover:shadow-cyan-500/30 hover:scale-105 active:scale-95 transition-all"
             >
               Escribinos
             </a>
@@ -60,7 +61,7 @@ export default function Navigation() {
 
         <button
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          className="lg:hidden p-2 text-white"
+          className="lg:hidden p-2 text-white hover:text-cyan-400 transition-colors"
         >
           {isMobileMenuOpen ? (
             <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -77,7 +78,7 @@ export default function Navigation() {
       <motion.div
         initial={false}
         animate={{ height: isMobileMenuOpen ? "auto" : 0, opacity: isMobileMenuOpen ? 1 : 0 }}
-        className="lg:hidden overflow-hidden bg-zinc-950/95 backdrop-blur-xl"
+        className="lg:hidden overflow-hidden bg-zinc-950/95 backdrop-blur-xl border-b border-zinc-900"
       >
         <div className="px-4 py-4 flex flex-col gap-3">
           {navLinks.map((link) => (
@@ -85,7 +86,7 @@ export default function Navigation() {
               key={link.href}
               href={link.href}
               onClick={() => setIsMobileMenuOpen(false)}
-              className="block py-3 text-sm font-medium text-zinc-400 hover:text-white"
+              className="block py-3 text-sm font-medium text-zinc-400 hover:text-white transition-colors"
             >
               {link.label}
             </a>
@@ -93,7 +94,7 @@ export default function Navigation() {
           <a
             href="#contacto"
             onClick={() => setIsMobileMenuOpen(false)}
-            className="block w-full text-center px-6 py-3 mt-2 bg-gradient-to-r from-cyan-500 to-purple-500 text-white text-sm font-medium rounded-full"
+            className="block w-full text-center px-6 py-3 mt-2 bg-gradient-to-r from-cyan-500 to-purple-500 text-white text-sm font-semibold rounded-full"
           >
             Escribinos
           </a>
